@@ -14,18 +14,23 @@ describe('ripe-banana routes', () => {
       .post('/api/studios')
       .send(studio)
       .then((res) => {
-        console.log('res', res.body);
         expect(res.body).toEqual({ ...studio, id: '1' });
       });
   });
 
-  // it('GET /studios', () => {
-  //   const studioName = faker.company.companyName();
-  //   return request(app).get().send()
-  //     .then((res) => {
-  //       expect(res.body).toEqual([{ id, name }]);
-  //     });
-  // });
+  it('shoudld get a studio with GET /studios', async () => {
+    await request(app).post('/api/studios').send(studio);
+    return await request(app)
+      .get('/api/studios')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            id: expect.any(String),
+            name: expect.any(String),
+          },
+        ]);
+      });
+  });
 
   afterAll(() => {
     pool.end();
