@@ -6,16 +6,38 @@ CREATE TABLE studio(
     city TEXT,
     state TEXT,
     country TEXT
-)
+);
 
 CREATE TABLE film(
     id BIGINT GENERATED ALWAYS AS IDENTITY UNIQUE,
     title TEXT NOT NULL,
     studio BIGINT NOT NULL,
     FOREIGN KEY(studio) REFERENCES studio(id) ON DELETE CASCADE,
-    relesed INT NOT NULL
-)
-CREATE TABLE a
-CREATE TABLE
-CREATE TABLE
+    released INT NOT NULL
+);
+
+CREATE TABLE actor (
+    id BIGINT GENERATED ALWAYS AS IDENTITY UNIQUE,
+    name TEXT NOT NULL,
+    dob DATE FORMAT 'dd.mm.yyyy', 
+    pob TEXT,
+    film_id BIGINT
+    FOREIGN KEY(film_id) REFERENCES film(id) ON DELETE CASCADE
+);
+
+CREATE TABLE reviewer (
+    id BIGINT GENERATED ALWAYS AS IDENTITY UNIQUE,
+    name TEXT NOT NULL,
+    company TEXT NOT NULL
+);
+
+CREATE TABLE (
+    id BIGINT GENERATED ALWAYS AS IDENTITY UNIQUE,
+    rating INT,
+    reviewer BIGINT,
+    review TEXT NOT NULL, 
+    film BIGINT
+    FOREIGN KEY(reviewer) REFERENCES reviewer(id) ON DELETE CASCADE,
+    FOREIGN KEY(film) REFERENCES film(id) ON DELETE CASCADE
+);
 
