@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS studio CASCADE, film, actor, reviewer, review;
+
+CREATE TABLE studio(
+    id BIGINT GENERATED ALWAYS AS IDENTITY UNIQUE,
+    name TEXT NOT NULL,
+    city TEXT,
+    state TEXT,
+    country TEXT
+)
+
+CREATE TABLE film(
+    id BIGINT GENERATED ALWAYS AS IDENTITY UNIQUE,
+    title TEXT NOT NULL,
+    studio BIGINT NOT NULL,
+    FOREIGN KEY(studio) REFERENCES studio(id) ON DELETE CASCADE,
+    relesed INT NOT NULL
+)
+CREATE TABLE a
+CREATE TABLE
+CREATE TABLE
+
