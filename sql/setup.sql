@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS studio CASCADE, film, actor, reviewer, review;
+-- DROP TABLE IF EXISTS studio CASCADE, film, actor, reviewer, review;
+DROP TABLE IF EXISTS studios;
 
 CREATE TABLE studios (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
