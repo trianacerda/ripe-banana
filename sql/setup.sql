@@ -1,5 +1,6 @@
 -- DROP TABLE IF EXISTS studio CASCADE, film, actor, reviewer, review;
-DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS studios CASCADE;
+DROP TABLE IF EXISTS films;
 
 CREATE TABLE studios (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -9,13 +10,13 @@ CREATE TABLE studios (
     country TEXT
 );
 
--- CREATE TABLE films (
---     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     title TEXT NOT NULL,
---     studio BIGINT NOT NULL,
---     FOREIGN KEY(studio) REFERENCES studio(id) ON DELETE CASCADE,
---     released INT NOT NULL
--- );
+CREATE TABLE films (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT NOT NULL,
+    studio BIGINT NOT NULL,
+    FOREIGN KEY(studio) REFERENCES studios(id) ON DELETE CASCADE,
+    released INT NOT NULL
+);
 
 -- CREATE TABLE actors (
 --     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
