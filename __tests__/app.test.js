@@ -2,25 +2,19 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
-const faker = require('faker');
+const studio = require('../lib/utils/studios-utils.js');
 
 describe('ripe-banana routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
 
-  const studio = {
-    name: `${faker.company.companyName()}`,
-    city: `${faker.address.city()}`,
-    state: `${faker.address.state()}`,
-    country: `${faker.address.country()}`,
-  };
-
   it('should create a new entry with POST/studios', async () => {
     return await request(app)
       .post('/api/studios')
       .send(studio)
       .then((res) => {
+        console.log('res', res.body);
         expect(res.body).toEqual({ ...studio, id: '1' });
       });
   });
