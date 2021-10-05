@@ -17,7 +17,7 @@ CREATE TABLE films (
     FOREIGN KEY(studio) REFERENCES studios(id) ON DELETE CASCADE,
     released INT NOT NULL
 );
-
+-- insert into films (title: 'something)
 -- CREATE TABLE actors (
 --     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 --     name TEXT NOT NULL,
