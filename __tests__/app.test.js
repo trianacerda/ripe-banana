@@ -9,11 +9,19 @@ describe('ripe-banana routes', () => {
     return setup(pool);
   });
 
-  it('POST/studios', async () => {
-    const studioName = faker.company.companyName();
-    return await request(app).post('/api/studios').send(studioName)
+  const studio = {
+    name: `${faker.company.companyName()}`,
+    city: `${faker.address.city()}`,
+    state: `${faker.address.state()}`,
+    country: `${faker.address.country()}`,
+  };
+
+  it('should create a new entry with POST/studios', async () => {
+    return await request(app)
+      .post('/api/studios')
+      .send(studio)
       .then((res) => {
-        expect(res.body).toEqual([{ id, name }]);
+        expect(res.body).toEqual({ ...studio, id: '1' });
       });
   });
 
