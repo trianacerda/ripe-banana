@@ -10,11 +10,8 @@ describe('ripe-banana routes', () => {
     return setup(pool);
   });
 
-
   it('should create a new entry with POST/films', async () => {
-    await request(app)
-      .post('/api/studios')
-      .send(studio);
+    await request(app).post('/api/studios').send(studio);
     return await request(app)
       .post('/api/films')
       .send(films)
@@ -22,7 +19,25 @@ describe('ripe-banana routes', () => {
         expect(res.body).toEqual({ ...films, id: '1' });
       });
   });
+
+  it('should get all films with GET /films', async () => {
+    await request(app).post('/api/studios').send(studio);
+    await request(app).post('/api/films').send(films);
+    return await request(app)
+      .get('/api/films')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            id: expect.any(String),
+            title: expect.any(String),
+            realeased: expect.any(Number),
+            studio: { id: expect.any(String), name: expect.any(String) },
+          },
+        ]);
+      });
+  });
+
   afterAll(() => {
     pool.end();
-  }); 
+  });
 });
