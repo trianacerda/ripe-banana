@@ -1,6 +1,9 @@
 -- DROP TABLE IF EXISTS studio CASCADE, film, actor, reviewer, review;
 DROP TABLE IF EXISTS studios CASCADE;
-DROP TABLE IF EXISTS films;
+DROP TABLE IF EXISTS films CASCADE;
+DROP TABLE IF EXISTS actors CASCADE;
+DROP TABLE IF EXISTS reviewers CASCADE;
+DROP TABLE IF EXISTS reviews;
 
 CREATE TABLE studios (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -18,39 +21,28 @@ CREATE TABLE films (
     released INT NOT NULL
 );
 
--- SELECT 
--- 	SUM(amount),
---     EXTRACT(YEAR FROM payment_date) AS y,
---     EXTRACT(MONTH FROM payment_date) AS m,
---     EXTRACT(DAY FROM payment_date) AS d
--- FROM payment
--- GROUP BY
--- 	ROLLUP(y, m, d)
--- ORDER BY y, m, d;
+CREATE TABLE actors (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    dob DATE, 
+    pob TEXT,
+    film_id BIGINT,
+    FOREIGN KEY(film_id) REFERENCES films(id) ON DELETE CASCADE
+);
 
--- insert into films (title: 'something)
--- CREATE TABLE actors (
---     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     name TEXT NOT NULL,
---     dob DATE FORMAT 'dd.mm.yyyy', 
---     pob TEXT,
---     film_id BIGINT,
---     FOREIGN KEY(film_id) REFERENCES film(id) ON DELETE CASCADE
--- );
+CREATE TABLE reviewers (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    company TEXT NOT NULL
+);
 
--- CREATE TABLE reviewers (
---     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     name TEXT NOT NULL,
---     company TEXT NOT NULL
--- );
-
--- CREATE TABLE reviews (
---     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
---     rating INT,
---     reviewer BIGINT,
---     review TEXT NOT NULL, 
---     film BIGINT,
---     FOREIGN KEY(reviewer) REFERENCES reviewer(id) ON DELETE CASCADE,
---     FOREIGN KEY(film) REFERENCES film(id) ON DELETE CASCADE
--- );
+CREATE TABLE reviews (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    rating INT,
+    reviewer BIGINT,
+    review TEXT NOT NULL, 
+    film BIGINT,
+    FOREIGN KEY(reviewer) REFERENCES reviewers(id) ON DELETE CASCADE,
+    FOREIGN KEY(film) REFERENCES films(id) ON DELETE CASCADE
+);
 

@@ -4,6 +4,9 @@ const request = require('supertest');
 const app = require('../lib/app.js');
 const studio = require('../lib/utils/studios-utils.js');
 const films = require('../lib/utils/films-utils.js');
+const actor = require('../lib/utils/actor-utils');
+const review = require('../lib/utils/review-utils');
+const reviewer = require('../lib/utils/reviewer-utils');
 
 describe('ripe-banana routes', () => {
   beforeEach(() => {
@@ -32,8 +35,15 @@ describe('ripe-banana routes', () => {
           released: expect.any(Number),
           studio: { id: expect.any(String), name: expect.any(String) },
         });
+        console.log('actor', actor);
+        console.log('review', review);
+        console.log('reviewer', reviewer);
       });
   });
+
+  // it('should get films by id + reviews/actors/reviewer', async () => {
+  //   await request(app).post('/api/studios').send(actor);
+  // });
 
   afterAll(() => {
     pool.end();
