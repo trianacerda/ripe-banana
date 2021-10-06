@@ -12,6 +12,9 @@ describe('ripe-banana routes', () => {
 
 
   it('should create a new entry with POST/films', async () => {
+    await request(app)
+      .post('/api/studios')
+      .send(studio);
     return await request(app)
       .post('/api/films')
       .send(films)
@@ -21,5 +24,5 @@ describe('ripe-banana routes', () => {
   });
   afterAll(() => {
     pool.end();
-  });
+  }); 
 });

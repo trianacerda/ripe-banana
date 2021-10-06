@@ -27,16 +27,18 @@ describe('ripe-banana routes', () => {
         expect(res.body).toEqual([
           {
             id: expect.any(String),
-            name: expect.any(String),
+            name: expect.any(String), 
           },
         ]);
       });
   });
-  it('should get a studio by id', async() => {
+  xit('should get a studio by id', async() => {
     await request(app).post('/api/studios').send(studio);
     await request(app).post('/api/films').send(films);
     return await request(app).get('/api/studios/1').then((res) => {
-      expect(res.body).toEqual({ id: expect.any(String), name: expect.any(String),
+      expect(res.body).toEqual({ 
+        id: expect.any(String), 
+        name: expect.any(String),
         city: expect.any(String),
         state: expect.any(String),
         country: expect.any(String),
