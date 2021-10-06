@@ -32,10 +32,11 @@ describe('ripe-banana routes', () => {
         ]);
       });
   });
-  xit('should get a studio by id', async() => {
+  it('should get a studio by id', async() => {
     await request(app).post('/api/studios').send(studio);
     await request(app).post('/api/films').send(films);
     return await request(app).get('/api/studios/1').then((res) => {
+      console.log('RES', res.body);
       expect(res.body).toEqual({ 
         id: expect.any(String), 
         name: expect.any(String),
