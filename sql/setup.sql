@@ -17,6 +17,17 @@ CREATE TABLE films (
     FOREIGN KEY(studio) REFERENCES studios(id) ON DELETE CASCADE,
     released INT NOT NULL
 );
+
+-- SELECT 
+-- 	SUM(amount),
+--     EXTRACT(YEAR FROM payment_date) AS y,
+--     EXTRACT(MONTH FROM payment_date) AS m,
+--     EXTRACT(DAY FROM payment_date) AS d
+-- FROM payment
+-- GROUP BY
+-- 	ROLLUP(y, m, d)
+-- ORDER BY y, m, d;
+
 -- insert into films (title: 'something)
 -- CREATE TABLE actors (
 --     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

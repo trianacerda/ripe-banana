@@ -27,7 +27,7 @@ describe('ripe-banana routes', () => {
         expect(res.body).toEqual([
           {
             id: expect.any(String),
-            name: expect.any(String),
+            name: expect.any(String), 
           },
         ]);
       });
@@ -36,7 +36,10 @@ describe('ripe-banana routes', () => {
     await request(app).post('/api/studios').send(studio);
     await request(app).post('/api/films').send(films);
     return await request(app).get('/api/studios/1').then((res) => {
-      expect(res.body).toEqual({ id: expect.any(String), name: expect.any(String),
+      console.log('RES', res.body);
+      expect(res.body).toEqual({ 
+        id: expect.any(String), 
+        name: expect.any(String),
         city: expect.any(String),
         state: expect.any(String),
         country: expect.any(String),
