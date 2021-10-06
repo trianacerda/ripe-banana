@@ -26,14 +26,12 @@ describe('ripe-banana routes', () => {
     return await request(app)
       .get('/api/films')
       .then((res) => {
-        expect(res.body).toEqual([
-          {
-            id: expect.any(String),
-            title: expect.any(String),
-            realeased: expect.any(Number),
-            studio: { id: expect.any(String), name: expect.any(String) },
-          },
-        ]);
+        expect(res.body).toEqual({
+          id: expect.any(String),
+          title: expect.any(String),
+          released: expect.any(Number),
+          studio: { id: expect.any(String), name: expect.any(String) },
+        });
       });
   });
 
