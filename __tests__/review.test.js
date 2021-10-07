@@ -11,10 +11,16 @@ describe('ripe-banana routes', () => {
 
   it('should post a REVIEW', async () => {
     return await request(app)
-      .post('/api/review')
+      .post('/api/reviews')
       .send(review)
       .then((res) => {
-        expect(res.body).toEqual({});
+        expect(res.body).toEqual({
+          id: expect.any(String),
+          rating: expect.any(Number),
+          reviewer: expect.any(String),
+          review: expect.any(String),
+          film: expect.any(String),
+        });
       });
   });
 
