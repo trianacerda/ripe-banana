@@ -35,9 +35,6 @@ describe('ripe-banana routes', () => {
           released: expect.any(Number),
           studio: { id: expect.any(String), name: expect.any(String) },
         });
-        console.log('actor', actor);
-        console.log('review', review);
-        console.log('reviewer', reviewer);
       });
   });
 
