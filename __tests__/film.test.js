@@ -4,9 +4,6 @@ const request = require('supertest');
 const app = require('../lib/app.js');
 const studio = require('../lib/utils/studios-utils.js');
 const films = require('../lib/utils/films-utils.js');
-const actor = require('../lib/utils/actor-utils');
-const review = require('../lib/utils/review-utils');
-const reviewer = require('../lib/utils/reviewer-utils');
 
 describe('ripe-banana routes', () => {
   beforeEach(() => {

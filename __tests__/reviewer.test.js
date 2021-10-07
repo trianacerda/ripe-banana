@@ -14,7 +14,11 @@ describe('ripe-banana routes', () => {
       .post('/api/reviewers')
       .send(reviewer)
       .then((res) => {
-        expect(res.body).toEqual({});
+        expect(res.body).toEqual({
+          id: expect.any(String),
+          name: expect.any(String),
+          company: expect.any(String),
+        });
       });
   });
 
