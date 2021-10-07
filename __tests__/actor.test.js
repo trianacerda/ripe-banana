@@ -11,10 +11,16 @@ describe('ripe-banana routes', () => {
 
   it('should post a new ACTOR', async () => {
     return await request(app)
-      .post('/api/actor')
+      .post('/api/actors')
       .send(actor)
       .then((res) => {
-        expect(res.body).toEqual({});
+        console.log('date', res.body);
+        expect(res.body).toEqual({
+          id: expect.any(String),
+          name: expect.any(String),
+          dob: expect.any(String),
+          pob: expect.any(String),
+        });
       });
   });
 
