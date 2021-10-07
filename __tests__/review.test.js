@@ -2,24 +2,19 @@ const pool = require('../lib/utils/pool.js');
 const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
-const actor = require('../lib/utils/actor-utils.js');
+const review = require('../lib/utils/review-utils.js');
 
 describe('ripe-banana routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
 
-  it('should post a new ACTOR', async () => {
+  it('should post a REVIEW', async () => {
     return await request(app)
-      .post('/api/actors')
-      .send(actor)
+      .post('/api/review')
+      .send(review)
       .then((res) => {
-        expect(res.body).toEqual({
-          id: expect.any(String),
-          name: expect.any(String),
-          dob: expect.any(String),
-          pob: expect.any(String),
-        });
+        expect(res.body).toEqual({});
       });
   });
 
