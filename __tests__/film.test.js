@@ -6,8 +6,7 @@ const studio = require('../lib/utils/studios-utils.js');
 const films = require('../lib/utils/films-utils.js');
 const actor = require('../lib/utils/actor-utils');
 const reviewer = require('../lib/utils/reviewer-utils');
-const reviewers = require('../lib/utils/reviewers-utils');
-const { review } = require('../lib/utils/review-utils.js');
+const review = require('../lib/utils/review-utils.js');
 
 describe('ripe-banana routes', () => {
   beforeEach(() => {
@@ -52,9 +51,9 @@ describe('ripe-banana routes', () => {
   //     ]
   // }
 
-  it('should get films by id + reviews/actors/reviewer', async () => {
-    await request(app).post('/api/studios').send(studio);
+  it.only('should get films by id + reviews/actors/reviewer', async () => {
     await request(app).post('/api/films').send(films);
+    await request(app).post('/api/studios').send(studio);
     await request(app).post('/api/actors').send(actor);
     await request(app).post('/api/reviewers').send(reviewer);
     await request(app).post('/api/reviews').send(review);
@@ -75,7 +74,7 @@ describe('ripe-banana routes', () => {
   });
 
 
-  afterAll(() => {
-    pool.end();
-  });
+  // afterAll(() => {
+  //   pool.end();
+  // });
 });
