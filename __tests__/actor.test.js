@@ -34,6 +34,26 @@ describe('ripe-banana routes', () => {
       });
   });
 
+  it('should get actors by id', async () => {
+    await request(app).post('/api/actors').send(actor);
+    return await request(app)
+      .get('/api/actors/1')
+      .then((res) => {
+        expect(res.body).toEqual({
+          name: expect.any(String),
+          dob: expect.any(String),
+          pob: expect.any(String),
+          films: [
+            {
+              id: expect.any(String),
+              title: expect.any(String),
+              released: expect.any(Number),
+            },
+          ],
+        });
+      });
+  });
+
   afterAll(() => {
     pool.end();
   });
