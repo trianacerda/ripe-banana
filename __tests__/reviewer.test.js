@@ -33,12 +33,28 @@ describe('ripe-banana routes', () => {
       
     return await request(app).get('/api/reviewers')
       .then((res) => {
-        console.log('RESBODY', res.body);
         expect(res.body).toEqual([{
           id: expect.any(String),
           name: expect.any(String),
           company: expect.any(String),
         }]);
+      });
+  });
+
+  it('should GET a new REVIEWER id', async () => {
+    await request(app).post('/api/studios').send(studio);
+    await request(app).post('/api/films').send(films);
+    await request(app).post('/api/reviewers').send(reviewer);
+    await request(app).post('/api/reviews').send(review);
+      
+    return await request(app).get('/api/reviewers/1')
+      .then((res) => {
+        // console.log('RESBODY', res.body);
+        expect(res.body).toEqual({
+          id: expect.any(String),
+          name: expect.any(String),
+          company: expect.any(String),
+        });
       });
   });
 
