@@ -3,6 +3,9 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const reviewer = require('../lib/utils/reviewer-utils.js');
+const studio = require('../lib/utils/studios-utils.js');
+const films = require('../lib/utils/films-utils.js');
+const review = require('../lib/utils/review-utils.js');
 
 describe('ripe-banana routes', () => {
   beforeEach(() => {
@@ -19,6 +22,22 @@ describe('ripe-banana routes', () => {
           name: expect.any(String),
           company: expect.any(String),
         });
+      });
+  });
+
+  it('should GET a new REVIEWER', async () => {
+    await request(app).post('/api/studios').send(studio);
+    await request(app).post('/api/films').send(films);
+    await request(app).post('/api/reviews').send(review);
+    await request(app).post('/api/reviewers').send(reviewer);
+      
+    return await request(app).get('/api/reviewer/1')
+      .then((res) => {
+        expect(res.body).toEqual([{
+          id: expect.any(String),
+          name: expect.any(String),
+          company: expect.any(String),
+        }]);
       });
   });
 

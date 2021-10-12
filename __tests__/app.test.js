@@ -50,7 +50,7 @@ describe('ripe-banana routes', () => {
               title: expect.any(String),
             }),
           ]),
-        });
+        }); 
       });
   });
 
