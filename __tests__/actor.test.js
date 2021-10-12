@@ -3,6 +3,8 @@ const setup = require('../data/setup.js');
 const request = require('supertest');
 const app = require('../lib/app.js');
 const actor = require('../lib/utils/actor-utils.js');
+const films = require('../lib/utils/films-utils');
+const studio = require('../lib/utils/studios-utils');
 
 describe('ripe-banana routes', () => {
   beforeEach(() => {
@@ -35,7 +37,9 @@ describe('ripe-banana routes', () => {
   });
 
   it('should get actors by id', async () => {
+    await request(app).post('/api/studios').send(studio);
     await request(app).post('/api/actors').send(actor);
+    await request(app).post('/api/films').send(films);
     return await request(app)
       .get('/api/actors/1')
       .then((res) => {
