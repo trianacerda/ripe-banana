@@ -52,8 +52,8 @@ describe('ripe-banana routes', () => {
   // }
 
   it.only('should get films by id + reviews/actors/reviewer', async () => {
-    await request(app).post('/api/films').send(films);
     await request(app).post('/api/studios').send(studio);
+    await request(app).post('/api/films').send(films);
     await request(app).post('/api/actors').send(actor);
     await request(app).post('/api/reviewers').send(reviewer);
     await request(app).post('/api/reviews').send(review);

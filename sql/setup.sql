@@ -25,9 +25,7 @@ CREATE TABLE actors (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     dob DATE, 
-    pob TEXT,
-    film_id BIGINT,
-    FOREIGN KEY(film_id) REFERENCES films(id) ON DELETE CASCADE
+    pob TEXT
 );
 
 CREATE TABLE reviewers (
