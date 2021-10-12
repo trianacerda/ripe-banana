@@ -23,6 +23,17 @@ describe('ripe-banana routes', () => {
       });
   });
 
+  it('should get a new actor with name/id', async () => {
+    await request(app).post('/api/actors').send(actor);
+    return await request(app)
+      .get('/api/actors')
+      .then((res) => {
+        expect(res.body).toEqual([
+          { id: expect.any(String), name: expect.any(String) },
+        ]);
+      });
+  });
+
   afterAll(() => {
     pool.end();
   });
