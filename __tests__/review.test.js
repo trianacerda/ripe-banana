@@ -43,7 +43,7 @@ describe('ripe-banana routes', () => {
           {
             id: expect.any(String),
             rating: expect.any(Number),
-            reviewer: expect.any(String),
+            review: expect.any(String),
             film: { id: expect.any(String), title: expect.any(String) },
           },
         ]);
