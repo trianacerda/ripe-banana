@@ -30,14 +30,17 @@ describe('ripe-banana routes', () => {
     await request(app).post('/api/films').send(films);
     await request(app).post('/api/reviewers').send(reviewer);
     await request(app).post('/api/reviews').send(review);
-      
-    return await request(app).get('/api/reviewers')
+
+    return await request(app)
+      .get('/api/reviewers')
       .then((res) => {
-        expect(res.body).toEqual([{
-          id: expect.any(String),
-          name: expect.any(String),
-          company: expect.any(String),
-        }]);
+        expect(res.body).toEqual([
+          {
+            id: expect.any(String),
+            name: expect.any(String),
+            company: expect.any(String),
+          },
+        ]);
       });
   });
 
@@ -46,14 +49,23 @@ describe('ripe-banana routes', () => {
     await request(app).post('/api/films').send(films);
     await request(app).post('/api/reviewers').send(reviewer);
     await request(app).post('/api/reviews').send(review);
-      
-    return await request(app).get('/api/reviewers/1')
+
+    return await request(app)
+      .get('/api/reviewers/1')
       .then((res) => {
         // console.log('RESBODY', res.body);
         expect(res.body).toEqual({
           id: expect.any(String),
           name: expect.any(String),
           company: expect.any(String),
+          reviews: [
+            {
+              id: expect.any(String),
+              rating: expect.any(Number),
+              review: expect.any(String),
+              film: { id: expect.any(String), title: expect.any(String) },
+            },
+          ],
         });
       });
   });
