@@ -70,6 +70,23 @@ describe('ripe-banana routes', () => {
       });
   });
 
+  it('should update specific key in reviewer', async () => {
+    await request(app).post('/api/studios').send(studio);
+    await request(app).post('/api/films').send(films);
+    await request(app).post('/api/reviewers').send(reviewer);
+
+    return await request(app)
+      .put('/api/reviewers/1')
+      .send({ name: 'billy bob thorton', company: 'cerda farm' })
+      .then((res) => {
+        expect(res.body).toEqual({
+          id: expect.any(String),
+          name: 'billy bob thorton',
+          company: 'cerda farm',
+        });
+      });
+  });
+
   afterAll(() => {
     pool.end();
   });
