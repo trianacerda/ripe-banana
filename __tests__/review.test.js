@@ -30,6 +30,26 @@ describe('ripe-banana routes', () => {
       });
   });
 
+  it('should get reviews', async () => {
+    await request(app).post('/api/studios').send(studio);
+    await request(app).post('/api/films').send(films);
+    await request(app).post('/api/reviewers').send(reviewer);
+    await request(app).post('/api/reviews').send(review);
+
+    return await request(app)
+      .get('/api/reviews')
+      .then((res) => {
+        expect(res.body).toEqual([
+          {
+            id: expect.any(String),
+            rating: expect.any(Number),
+            reviewer: expect.any(String),
+            film: { id: expect.any(String), title: expect.any(String) },
+          },
+        ]);
+      });
+  });
+
   afterAll(() => {
     pool.end();
   });
