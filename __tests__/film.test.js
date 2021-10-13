@@ -38,20 +38,7 @@ describe('ripe-banana routes', () => {
       });
   });
 
-  //   {
-  //     title,
-  //     released,
-  //     studio: { id, name },
-  //     cast: [{ id, name }], // actor id and name
-  //     reviews: [{
-  //         id,
-  //         rating,
-  //         review,
-  //         reviewer: { id, name }
-  //     ]
-  // }
-
-  it.only('should get films by id + reviews/actors/reviewer', async () => {
+  it('should get films by id + reviews/actors/reviewer', async () => {
     await request(app).post('/api/studios').send(studio);
     await request(app).post('/api/films').send(films);
     await request(app).post('/api/actors').send(actor);
@@ -64,17 +51,18 @@ describe('ripe-banana routes', () => {
       released: expect.any(Number),
       studio: { id: expect.any(String), name: expect.any(String) },
       cast: [{ id: expect.any(String), name: expect.any(String) }],
-      reviews: [{
-        id: expect.any(String),
-        rating: expect.any(Number),
-        review: expect.any(String),
-        reviewer: { id : expect.any(String), name: expect.any(String), }
-      }]
+      reviews: [
+        {
+          id: expect.any(String),
+          rating: expect.any(Number),
+          review: expect.any(String),
+          reviewer: { id: expect.any(String), name: expect.any(String) },
+        },
+      ],
     });
   });
 
-
-  // afterAll(() => {
-  //   pool.end();
-  // });
+  afterAll(() => {
+    pool.end();
+  });
 });

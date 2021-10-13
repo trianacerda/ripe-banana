@@ -96,7 +96,6 @@ describe('ripe-banana routes', () => {
     return await request(app)
       .delete('/api/reviewers/1')
       .then((res) => {
-        console.log('body', res.body);
         expect(res.body).toEqual({ ...reviewer, id: '1' });
       });
   });
