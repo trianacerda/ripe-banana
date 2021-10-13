@@ -87,7 +87,7 @@ describe('ripe-banana routes', () => {
       });
   });
 
-  it('should delete reviewer if they have a review', async () => {
+  it('should not delete reviewer if they have a review', async () => {
     await request(app).post('/api/studios').send(studio);
     await request(app).post('/api/films').send(films);
     await request(app).post('/api/reviewers').send(reviewer);
@@ -96,7 +96,8 @@ describe('ripe-banana routes', () => {
     return await request(app)
       .delete('/api/reviewers/1')
       .then((res) => {
-        expect(res.body).toEqual(reviewer);
+        console.log('body', res.body);
+        expect(res.body).toEqual({ ...reviewer, id: '1' });
       });
   });
 
